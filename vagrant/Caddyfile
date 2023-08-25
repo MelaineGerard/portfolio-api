@@ -1,0 +1,6 @@
+:80 {
+    root * /home/vagrant/portfolio-api/public
+    php_fastcgi unix//run/php/php8.2-fpm.sock
+    file_server
+    encode gzip
+}

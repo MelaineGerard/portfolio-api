@@ -8,3 +8,12 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+# IDES
+.vscode/
+.idea/
+.fleet/
+*.iml
+
+# Vagrant
+.vagrant/
