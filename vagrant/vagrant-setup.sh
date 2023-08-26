@@ -16,7 +16,10 @@ systemctl restart caddy
 echo "create database development" | mysql 
 echo "CREATE USER 'development'@'%' IDENTIFIED BY 'development'" | mysql 
 echo "GRANT ALL PRIVILEGES ON development.* TO 'development'@'%';" | mysql 
-echo "flush privileges" | mysql 
+echo "flush privileges" | mysql
+
+sed -i 's/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
+systemctl restart mysql
 
 # Setup Composer
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
