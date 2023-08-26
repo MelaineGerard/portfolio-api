@@ -3,7 +3,7 @@ name: PHPStan
 on: [push]
 
 jobs:
-  build-test:
+  phpstan:
     runs-on: ubuntu-latest
 
     steps:

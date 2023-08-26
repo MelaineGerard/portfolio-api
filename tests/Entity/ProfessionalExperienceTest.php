@@ -9,7 +9,10 @@ class ProfessionalExperienceTest extends TestCase
 {
     use EntityCreationTrait;
 
-    public function testFields(): void
+    /**
+     * @test
+     */
+    public function fields(): void
     {
         $data = [
             'enterprise' => 'Mon Entreprise',
@@ -18,7 +21,7 @@ class ProfessionalExperienceTest extends TestCase
             'url' => 'https://example.test',
             'type' => 'Stage',
             'startDate' => 'Mai 2021',
-            'endDate' => 'Mai 2022'
+            'endDate' => 'Mai 2022',
         ];
         $professionalExperience = self::createProfessionalExperience(
             enterprise: $data['enterprise'],

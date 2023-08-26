@@ -10,7 +10,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 #[ORM\Entity(repositoryClass: ProfessionalExperienceRepository::class)]
 class ProfessionalExperience
 {
-
     use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,25 +17,25 @@ class ProfessionalExperience
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private string $type = "";
+    private string $type = '';
 
     #[ORM\Column(length: 255)]
-    private string $description = "";
+    private string $description = '';
 
     #[ORM\Column(length: 255)]
-    private string $startDate = "";
+    private string $startDate = '';
 
     #[ORM\Column(length: 255)]
-    private string $endDate = "";
+    private string $endDate = '';
 
     #[ORM\Column(length: 255)]
-    private string $enterprise = "";
+    private string $enterprise = '';
 
     #[ORM\Column(length: 255)]
-    private string $url = "";
+    private string $url = '';
 
     #[ORM\Column(type: Types::TEXT)]
-    private string $content = "";
+    private string $content = '';
 
     public function getId(): ?int
     {

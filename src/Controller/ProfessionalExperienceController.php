@@ -20,8 +20,7 @@ class ProfessionalExperienceController extends AbstractController
     public function __construct(
         private readonly ProfessionalExperienceRepository $professionalExperienceRepository,
         private readonly EntityManagerInterface $entityManager
-    )
-    {
+    ) {
     }
 
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -48,23 +47,22 @@ class ProfessionalExperienceController extends AbstractController
     {
         $validator = Validation::createValidator();
         if (!$professionalExperience instanceof ProfessionalExperience) {
-            $professionalExperience = new ProfessionalExperience();
+            $professionalExperience = new ProfessionalExperience;
         }
 
         $data = (array) json_decode($request->getContent(), true);
 
-
         $violations = $validator->validate($data, new Collection([
-            'type' => new NotBlank(),
-            'description' => new NotBlank(),
-            'start_date' => new NotBlank(),
-            'end_date' => new NotBlank(),
-            'enterprise' => new NotBlank(),
+            'type' => new NotBlank,
+            'description' => new NotBlank,
+            'start_date' => new NotBlank,
+            'end_date' => new NotBlank,
+            'enterprise' => new NotBlank,
             'url' => [
-                new NotBlank(),
-                new Url(),
+                new NotBlank,
+                new Url,
             ],
-            'content' => new NotBlank(),
+            'content' => new NotBlank,
         ]));
 
         if (0 !== count($violations)) {

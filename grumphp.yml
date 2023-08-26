@@ -1,6 +1,4 @@
 grumphp:
-    git_hook_variables:
-        EXEC_GRUMPHP_COMMAND: 'ddev php'
     process_timeout: 120
     hooks_dir: ~
     hooks_preset: local

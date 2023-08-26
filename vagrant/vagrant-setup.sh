@@ -14,8 +14,10 @@ systemctl restart caddy
 
 # Setup Mysql
 echo "create database development" | mysql 
-echo "CREATE USER 'development'@'%' IDENTIFIED BY 'development'" | mysql 
-echo "GRANT ALL PRIVILEGES ON development.* TO 'development'@'%';" | mysql 
+echo "create database development_test" | mysql
+echo "CREATE USER 'development'@'%' IDENTIFIED BY 'development'" | mysql
+echo "GRANT ALL PRIVILEGES ON development.* TO 'development'@'%';" | mysql
+echo "GRANT ALL PRIVILEGES ON development_test.* TO 'development'@'%';" | mysql
 echo "flush privileges" | mysql
 
 sed -i 's/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
