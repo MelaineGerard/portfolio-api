@@ -47,11 +47,12 @@ class ProfessionalExperienceController extends AbstractController
     public function create(?ProfessionalExperience $professionalExperience, Request $request): JsonResponse
     {
         $validator = Validation::createValidator();
-        if (!$professionalExperience) {
+        if (!$professionalExperience instanceof ProfessionalExperience) {
             $professionalExperience = new ProfessionalExperience();
         }
 
-        $data = json_decode($request->getContent(), true);
+        $data = (array) json_decode($request->getContent(), true);
+
 
         $violations = $validator->validate($data, new Collection([
             'type' => new NotBlank(),
@@ -72,13 +73,13 @@ class ProfessionalExperienceController extends AbstractController
             ], 422);
         }
 
-        $professionalExperience->setType($data['type']);
-        $professionalExperience->setDescription($data['description']);
-        $professionalExperience->setStartDate($data['start_date']);
-        $professionalExperience->setEndDate($data['end_date']);
-        $professionalExperience->setEnterprise($data['enterprise']);
-        $professionalExperience->setUrl($data['url']);
-        $professionalExperience->setContent($data['content']);
+        $professionalExperience->setType((string) $data['type']);
+        $professionalExperience->setDescription((string) $data['description']);
+        $professionalExperience->setStartDate((string) $data['start_date']);
+        $professionalExperience->setEndDate((string) $data['end_date']);
+        $professionalExperience->setEnterprise((string) $data['enterprise']);
+        $professionalExperience->setUrl((string) $data['url']);
+        $professionalExperience->setContent((string) $data['content']);
 
         $this->entityManager->persist($professionalExperience);
         $this->entityManager->flush();

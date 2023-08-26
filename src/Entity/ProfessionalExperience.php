@@ -18,32 +18,32 @@ class ProfessionalExperience
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    private string $type = "";
 
     #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    private string $description = "";
 
     #[ORM\Column(length: 255)]
-    private ?string $startDate = null;
+    private string $startDate = "";
 
     #[ORM\Column(length: 255)]
-    private ?string $endDate = null;
+    private string $endDate = "";
 
     #[ORM\Column(length: 255)]
-    private ?string $enterprise = null;
+    private string $enterprise = "";
 
     #[ORM\Column(length: 255)]
-    private ?string $url = null;
+    private string $url = "";
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $content = null;
+    private string $content = "";
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -55,7 +55,7 @@ class ProfessionalExperience
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -67,7 +67,7 @@ class ProfessionalExperience
         return $this;
     }
 
-    public function getStartDate(): ?string
+    public function getStartDate(): string
     {
         return $this->startDate;
     }
@@ -79,7 +79,7 @@ class ProfessionalExperience
         return $this;
     }
 
-    public function getEndDate(): ?string
+    public function getEndDate(): string
     {
         return $this->endDate;
     }
@@ -91,7 +91,7 @@ class ProfessionalExperience
         return $this;
     }
 
-    public function getEnterprise(): ?string
+    public function getEnterprise(): string
     {
         return $this->enterprise;
     }
@@ -103,7 +103,7 @@ class ProfessionalExperience
         return $this;
     }
 
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }
@@ -115,7 +115,7 @@ class ProfessionalExperience
         return $this;
     }
 
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
