@@ -14,10 +14,8 @@ trait EntityCreationTrait
         string $type = 'Stage',
         string $startDate = 'Mai 2021',
         string $endDate = 'Mai 2022',
-
-    ): ProfessionalExperience
-    {
-        $professionalExperience = new ProfessionalExperience();
+    ): ProfessionalExperience {
+        $professionalExperience = new ProfessionalExperience;
 
         $professionalExperience->setEnterprise($enterprise);
         $professionalExperience->setContent($content);

@@ -9,7 +9,10 @@ class ProfessionalExperienceTest extends TestCase
 {
     use EntityCreationTrait;
 
-    public function testFields()
+    /**
+     * @test
+     */
+    public function fields(): void
     {
         $data = [
             'enterprise' => 'Mon Entreprise',
@@ -18,9 +21,9 @@ class ProfessionalExperienceTest extends TestCase
             'url' => 'https://example.test',
             'type' => 'Stage',
             'startDate' => 'Mai 2021',
-            'endDate' => 'Mai 2022'
+            'endDate' => 'Mai 2022',
         ];
-        $professionalExperience = $this->createProfessionalExperience(
+        $professionalExperience = self::createProfessionalExperience(
             enterprise: $data['enterprise'],
             content: $data['content'],
             description: $data['description'],
@@ -30,12 +33,12 @@ class ProfessionalExperienceTest extends TestCase
             endDate: $data['endDate']
         );
 
-        $this->assertEquals($data['enterprise'], $professionalExperience->getEnterprise());
-        $this->assertEquals($data['content'], $professionalExperience->getContent());
-        $this->assertEquals($data['description'], $professionalExperience->getDescription());
-        $this->assertEquals($data['url'], $professionalExperience->getUrl());
-        $this->assertEquals($data['type'], $professionalExperience->getType());
-        $this->assertEquals($data['startDate'], $professionalExperience->getStartDate());
-        $this->assertEquals($data['endDate'], $professionalExperience->getEndDate());
+        self::assertEquals($data['enterprise'], $professionalExperience->getEnterprise());
+        self::assertEquals($data['content'], $professionalExperience->getContent());
+        self::assertEquals($data['description'], $professionalExperience->getDescription());
+        self::assertEquals($data['url'], $professionalExperience->getUrl());
+        self::assertEquals($data['type'], $professionalExperience->getType());
+        self::assertEquals($data['startDate'], $professionalExperience->getStartDate());
+        self::assertEquals($data['endDate'], $professionalExperience->getEndDate());
     }
 }

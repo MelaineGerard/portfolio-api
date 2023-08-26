@@ -6,7 +6,7 @@ apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
 apt update
-apt install -y caddy php-fpm php-curl php-bcmath php-json php-mysql php-mbstring php-xml php-tokenizer php-zip mariadb-server
+apt install -y caddy php-fpm php-curl php-bcmath php-json php-mysql php-mbstring php-xml php-tokenizer php-zip mariadb-server unzip git
 
 # Setup Caddy
 cp /home/vagrant/portfolio-api/vagrant/Caddyfile /etc/caddy/Caddyfile
@@ -14,8 +14,10 @@ systemctl restart caddy
 
 # Setup Mysql
 echo "create database development" | mysql 
-echo "CREATE USER 'development'@'%' IDENTIFIED BY 'development'" | mysql 
-echo "GRANT ALL PRIVILEGES ON development.* TO 'development'@'%';" | mysql 
+echo "create database development_test" | mysql
+echo "CREATE USER 'development'@'%' IDENTIFIED BY 'development'" | mysql
+echo "GRANT ALL PRIVILEGES ON development.* TO 'development'@'%';" | mysql
+echo "GRANT ALL PRIVILEGES ON development_test.* TO 'development'@'%';" | mysql
 echo "flush privileges" | mysql
 
 sed -i 's/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf

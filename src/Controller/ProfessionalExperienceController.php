@@ -20,8 +20,7 @@ class ProfessionalExperienceController extends AbstractController
     public function __construct(
         private readonly ProfessionalExperienceRepository $professionalExperienceRepository,
         private readonly EntityManagerInterface $entityManager
-    )
-    {
+    ) {
     }
 
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -47,23 +46,23 @@ class ProfessionalExperienceController extends AbstractController
     public function create(?ProfessionalExperience $professionalExperience, Request $request): JsonResponse
     {
         $validator = Validation::createValidator();
-        if (!$professionalExperience) {
-            $professionalExperience = new ProfessionalExperience();
+        if (!$professionalExperience instanceof ProfessionalExperience) {
+            $professionalExperience = new ProfessionalExperience;
         }
 
-        $data = json_decode($request->getContent(), true);
+        $data = (array) json_decode($request->getContent(), true);
 
         $violations = $validator->validate($data, new Collection([
-            'type' => new NotBlank(),
-            'description' => new NotBlank(),
-            'start_date' => new NotBlank(),
-            'end_date' => new NotBlank(),
-            'enterprise' => new NotBlank(),
+            'type' => new NotBlank,
+            'description' => new NotBlank,
+            'start_date' => new NotBlank,
+            'end_date' => new NotBlank,
+            'enterprise' => new NotBlank,
             'url' => [
-                new NotBlank(),
-                new Url(),
+                new NotBlank,
+                new Url,
             ],
-            'content' => new NotBlank(),
+            'content' => new NotBlank,
         ]));
 
         if (0 !== count($violations)) {
@@ -72,13 +71,13 @@ class ProfessionalExperienceController extends AbstractController
             ], 422);
         }
 
-        $professionalExperience->setType($data['type']);
-        $professionalExperience->setDescription($data['description']);
-        $professionalExperience->setStartDate($data['start_date']);
-        $professionalExperience->setEndDate($data['end_date']);
-        $professionalExperience->setEnterprise($data['enterprise']);
-        $professionalExperience->setUrl($data['url']);
-        $professionalExperience->setContent($data['content']);
+        $professionalExperience->setType((string) $data['type']);
+        $professionalExperience->setDescription((string) $data['description']);
+        $professionalExperience->setStartDate((string) $data['start_date']);
+        $professionalExperience->setEndDate((string) $data['end_date']);
+        $professionalExperience->setEnterprise((string) $data['enterprise']);
+        $professionalExperience->setUrl((string) $data['url']);
+        $professionalExperience->setContent((string) $data['content']);
 
         $this->entityManager->persist($professionalExperience);
         $this->entityManager->flush();
