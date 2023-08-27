@@ -2,43 +2,34 @@
 
 namespace App\Controller;
 
-use App\Entity\ProfessionalExperience;
+use App\Entity\Project;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Url;
 
-#[Route('/api/professional/experience', name: 'app_api_professional_experience_')]
-class ProfessionalExperienceController extends AbstractApiController
+#[Route('/api/project', name: 'app_api_project_')]
+class ProjectController extends AbstractApiController
 {
     public function getEntityClass(): string
     {
-        return ProfessionalExperience::class;
+        return Project::class;
     }
 
     public function getValidatorRules(): array
     {
         return [
-            'type' => [
+            'name' => [
                 new NotBlank,
             ],
             'description' => [
                 new NotBlank,
             ],
-            'start_date' => [
-                new NotBlank,
-            ],
-            'end_date' => [
-                new NotBlank,
-            ],
-            'enterprise' => [
+            'content' => [
                 new NotBlank,
             ],
             'url' => [
                 new NotBlank,
                 new Url,
-            ],
-            'content' => [
-                new NotBlank,
             ],
         ];
     }
