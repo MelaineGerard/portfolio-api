@@ -9,12 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Url;
 use Symfony\Component\Validator\Validation;
 
-#[Route('/api/professional/experience', name: 'app_professional_experience_')]
+#[Route('/api/professional/experience', name: 'app_api_professional_experience_')]
 class ProfessionalExperienceController extends AbstractController
 {
     public function __construct(
@@ -43,6 +44,7 @@ class ProfessionalExperienceController extends AbstractController
 
     #[Route('/', name: 'create', methods: ['POST'])]
     #[Route('/{id}', name: 'edit', methods: ['PUT'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function create(?ProfessionalExperience $professionalExperience, Request $request): JsonResponse
     {
         $validator = Validation::createValidator();
@@ -88,6 +90,7 @@ class ProfessionalExperienceController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['DELETE'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(ProfessionalExperience $professionalExperience): JsonResponse
     {
         $this->entityManager->remove($professionalExperience);
