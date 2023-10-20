@@ -29,7 +29,7 @@ class Project
     private ?string $content = null;
 
     #[ORM\Column]
-    private ?bool $featured = null;
+    private ?bool $featured = false;
 
     public function getId(): ?int
     {
