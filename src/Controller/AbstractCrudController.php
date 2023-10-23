@@ -28,7 +28,6 @@ abstract class AbstractCrudController extends AbstractController
 
 
     #[Route('/', name: 'index', methods: ['GET'])]
-    #[IsGranted('PUBLIC_ACCESS')]
     public function index(): Response
     {
         $entities = $this->entityManager->getRepository($this->getEntity())->findAll();
@@ -41,7 +40,6 @@ abstract class AbstractCrudController extends AbstractController
 
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
-    #[IsGranted('PUBLIC_ACCESS')]
     public function show(int $id): Response
     {
         $entity = $this->entityManager->getRepository($this->getEntity())->find($id);
