@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -27,6 +28,7 @@ abstract class AbstractCrudController extends AbstractController
 
 
     #[Route('/', name: 'index', methods: ['GET'])]
+    #[IsGranted('PUBLIC_ACCESS')]
     public function index(): Response
     {
         $entities = $this->entityManager->getRepository($this->getEntity())->findAll();
@@ -39,6 +41,7 @@ abstract class AbstractCrudController extends AbstractController
 
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
+    #[IsGranted('PUBLIC_ACCESS')]
     public function show(int $id): Response
     {
         $entity = $this->entityManager->getRepository($this->getEntity())->find($id);
@@ -57,6 +60,7 @@ abstract class AbstractCrudController extends AbstractController
      */
     #[Route('/', name: 'store', methods: ['POST'])]
     #[Route('/{id}', name: 'update', methods: ['PUT'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function store(?int $id, Request $request): Response
     {
         $body = json_decode($request->getContent(), true, JSON_THROW_ON_ERROR);
@@ -92,6 +96,7 @@ abstract class AbstractCrudController extends AbstractController
     }
 
     #[Route('/{id}', name: 'destroy', methods: ['DELETE'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function destroy(int $id): Response
     {
         $entity = $this->entityManager->getRepository($this->getEntity())->find($id);
